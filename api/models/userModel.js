@@ -18,7 +18,6 @@ const UserSchema = new Schema(
     regno: {
       type: String,
       required: true,
-      unique: true,
       trim: true,
     },
     password: {

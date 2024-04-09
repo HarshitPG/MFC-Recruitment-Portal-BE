@@ -26,13 +26,19 @@ const signUp = async (req, res) => {
       email,
     });
 
+    console.log("userAvailable", userAvailable);
+
     if (userAvailable && !userAvailable.verified) {
       return res.status(400).json({
         message:
           "account already created and otp is also sent but not verified.Try again after 15mins",
       });
     }
-
+    if (userAvailable && userAvailable.verified) {
+      return res.status(400).json({
+        message: "An account with this email already exists and is verified.",
+      });
+    }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     console.log("Hashed Password: ", hashedPassword);
