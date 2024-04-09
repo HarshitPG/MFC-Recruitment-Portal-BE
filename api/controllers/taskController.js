@@ -10,6 +10,7 @@ const uploadFile = upload.single("file");
 
 const uploadFileTech = async (req, res) => {
   const { id } = req.params;
+  const { subdomain } = req.body;
 
   if (!req.file) {
     return res.status(400).json({ message: "No file uploaded" });
@@ -27,6 +28,7 @@ const uploadFileTech = async (req, res) => {
           data: req.file.buffer,
           contentType: req.file.mimetype,
         },
+        subdomain: subdomain,
         isDone: true,
       });
       const savedFile = await newFile.save();
@@ -43,6 +45,7 @@ const uploadFileTech = async (req, res) => {
 
 const uploadFileDesign = async (req, res) => {
   const { id } = req.params;
+  const { subdomain } = req.body;
 
   if (!req.file) {
     return res.status(400).json({ message: "No file uploaded" });
@@ -58,6 +61,8 @@ const uploadFileDesign = async (req, res) => {
           data: req.file.buffer,
           contentType: req.file.mimetype,
         },
+
+        subdomain: subdomain,
         isDone: true,
       });
     }
@@ -123,6 +128,7 @@ const uploadTaskManagment = async (req, res) => {
     question6,
     question7,
     question8,
+    subdomain,
   } = req.body;
   try {
     const user = await ManagmentTaskModel.findOne({
@@ -143,6 +149,7 @@ const uploadTaskManagment = async (req, res) => {
       question6: question6,
       question7: question7,
       question8: question8,
+      subdomain: subdomain,
       isDone: true,
     });
     const savedTask = await task.save();
