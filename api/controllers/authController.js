@@ -26,7 +26,7 @@ const signUp = async (req, res) => {
       email,
     });
 
-    if (userAvailable) {
+    if (userAvailable && !userAvailable.verified) {
       return res.status(400).json({
         message:
           "account already created and otp is also sent but not verified.Try again after 15mins",
