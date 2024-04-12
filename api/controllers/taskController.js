@@ -1,8 +1,7 @@
 const multer = require("multer");
 const TechTaskModel = require("../models/techTaskModel");
-const DesignTaskModel = require("../models/designTaskModel");
 const ManagmentTaskModel = require("../models/managementModel");
-const designTaskModel = require("../models/designTaskModel");
+const DesignTaskModel = require("../models/designTaskModel");
 
 // const storage = multer.memoryStorage();
 // const upload = multer({ storage: storage });
@@ -193,7 +192,7 @@ const uploadDesignTech = async (req, res) => {
   const { id } = req.params;
   const { question1, question2, question3, subdomain } = req.body;
   try {
-    const user = await ManagmentTaskModel.findOne({
+    const user = await DesignTaskModel.findOne({
       user_id: id,
     });
 
@@ -201,7 +200,7 @@ const uploadDesignTech = async (req, res) => {
       return res.status(200).json({ message: "Already file submitted" });
     }
 
-    const task = new designTaskModel({
+    const task = new DesignTaskModel({
       user_id: id,
       question1: question1,
       question2: question2,

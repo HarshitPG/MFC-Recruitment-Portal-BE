@@ -15,7 +15,6 @@ const ManagementTaskSchema = new Schema({
       "publicity",
       "finance",
       "editorial",
-      "media",
     ],
   },
   question1: {
