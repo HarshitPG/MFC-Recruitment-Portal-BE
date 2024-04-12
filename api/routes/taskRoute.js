@@ -19,24 +19,26 @@ app.use(express.json());
 
 const router = express.Router();
 
-router.post(
-  "/techtask/:id",
-  validateTech,
-  uploadFile,
-  fileCountLimit,
-  fileSizeLimit,
-  uploadFileTech
-);
-router.get("/downloadtechtask/:id", validateTech, downloadFileTech);
-router.post(
-  "/designtask/:id",
-  validateDesign,
-  fileCountLimit,
-  fileSizeLimit,
-  uploadFile,
-  uploadFileDesign
-);
-router.get("/downloadtaskdesign/:id", validateDesign, downloadFileDesign);
+// router.post(
+//   "/techtask/:id",
+//   validateTech,
+//   uploadFile,
+//   fileCountLimit,
+//   fileSizeLimit,
+//   uploadFileTech
+// );
+// router.get("/downloadtechtask/:id", validateTech, downloadFileTech);
+// router.post(
+//   "/designtask/:id",
+//   validateDesign,
+//   fileCountLimit,
+//   fileSizeLimit,
+//   uploadFile,
+//   uploadFileDesign
+// );
+// router.get("/downloadtaskdesign/:id", validateDesign, downloadFileDesign);
 router.post("/management/:id", validateManagement, uploadTaskManagment);
+router.post("/tech/:id", validateTech, uploadTaskManagment);
+router.post("/design/:id", validateDesign, uploadTaskManagment);
 
 module.exports = router;

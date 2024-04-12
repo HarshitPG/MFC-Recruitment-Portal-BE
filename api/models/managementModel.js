@@ -10,10 +10,10 @@ const ManagementTaskSchema = new Schema({
   subdomain: {
     type: [String],
     enum: [
-      "teammanagement",
+      "generaloperations",
       "outreach",
       "publicity",
-      "anchors",
+      "finance",
       "editorial",
       "media",
     ],

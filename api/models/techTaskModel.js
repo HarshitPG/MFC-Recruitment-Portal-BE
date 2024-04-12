@@ -17,16 +17,39 @@ const TechTaskSchema = new Schema({
       "ai/ml",
       "cp",
       "blockchain",
-      "devops",
-      "cybersec",
-      "gamedev",
-      "ar/vr",
-      "hardware",
+      "gamedev+ar/vr",
     ],
   },
-  file: {
-    data: Buffer,
-    contentType: String,
+  // file: {
+  //   data: Buffer,
+  //   contentType: String,
+  // },
+  question1: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 100;
+      },
+      message: "Maximum word limit exceeded (100 words).",
+    },
+  },
+  question2: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 100;
+      },
+      message: "Maximum word limit exceeded (100 words).",
+    },
+  },
+  question3: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 100;
+      },
+      message: "Maximum word limit exceeded (100 words).",
+    },
   },
   isDone: {
     type: Boolean,

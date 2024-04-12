@@ -254,7 +254,7 @@ const refreshToken = async (req, res) => {
   }
 };
 
-export const requestPasswordReset = async (req, res) => {
+const requestPasswordReset = async (req, res) => {
   const { email } = req.body;
   try {
     const user = await UserModel.findOne({ email: email });
@@ -280,7 +280,7 @@ export const requestPasswordReset = async (req, res) => {
   }
 };
 
-export const updatePassword = async (req, res) => {
+const updatePassword = async (req, res) => {
   const { username, password, emailToken } = req.body;
   try {
     const user = await UserModel.findOne({ username, emailToken });
@@ -302,4 +302,12 @@ export const updatePassword = async (req, res) => {
   }
 };
 
-module.exports = { signUp, verifyOTP, resendOTP, login, refreshToken };
+module.exports = {
+  signUp,
+  verifyOTP,
+  resendOTP,
+  login,
+  refreshToken,
+  requestPasswordReset,
+  updatePassword,
+};
