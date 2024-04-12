@@ -91,6 +91,15 @@ const UserSchema = new Schema(
       type: Number,
       default: 0,
     },
+    emailToken: {
+      type: String,
+    },
+    isSC: {
+      type: Boolean,
+    },
+    isJC: {
+      type: Boolean,
+    },
   },
   { timestamps: true }
 );

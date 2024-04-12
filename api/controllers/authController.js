@@ -42,6 +42,9 @@ const signUp = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     console.log("Hashed Password: ", hashedPassword);
+    const isJC = regno.startsWith("23");
+    const isSC = !isJC;
+
     const newUser = new UserModel({
       username: username,
       email: email,
@@ -51,6 +54,8 @@ const signUp = async (req, res) => {
       roundOne: false,
       roundTwo: false,
       roundThree: false,
+      isJC: isJC,
+      isSC: isSC,
     });
     const savedUser = await newUser.save();
 
@@ -246,6 +251,54 @@ const refreshToken = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const requestPasswordReset = async (req, res) => {
+  const { email } = req.body;
+  try {
+    const user = await UserModel.findOne({ email: email });
+
+    if (user) {
+      if (!user.emailToken) {
+        const emailToken = crypto.randomBytes(64).toString("hex");
+        user.emailToken = emailToken;
+        await user.save();
+      }
+
+      await sendPasswordResetMail(user);
+
+      res.status(200).json({
+        message:
+          "Email token for password reset sent to the user's email address.",
+      });
+    } else {
+      res.status(404).json("User not found");
+    }
+  } catch (err) {
+    res.status(500).json(err.message);
+  }
+};
+
+export const updatePassword = async (req, res) => {
+  const { username, password, emailToken } = req.body;
+  try {
+    const user = await UserModel.findOne({ username, emailToken });
+
+    if (user) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPass = await bcrypt.hash(password, salt);
+      user.password = hashedPass;
+      user.isVerified = true;
+      user.emailToken = null;
+      await user.save();
+
+      res.status(200).json({ message: "Password updated successfully." });
+    } else {
+      res.status(404).json("Invalid username or email token.");
+    }
+  } catch (err) {
+    res.status(500).json(err.message);
   }
 };
 
