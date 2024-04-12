@@ -89,7 +89,7 @@ const getAllUser = async (req, res) => {
               },
             },
           },
-          designTasks: {
+          managementTasks: {
             $filter: {
               input: "$managementTasks",
               as: "task",
@@ -157,4 +157,25 @@ const updateUserStatus = async (req, res) => {
   }
 };
 
-module.exports = { getAllUser, updateUserStatus };
+const makeAdmin = async (req, res) => {
+  const { email, secretcode, secretcode2 } = req.body;
+  try {
+    if (
+      secretcode === process.env.ACCESS_TOKEN_SECERT &&
+      secretcode2 === process.env.PORT
+    ) {
+      const user = await UserModel.findByOneAndUpdate(
+        { email },
+        {
+          admin: true,
+        },
+        { new: true }
+      );
+    }
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getAllUser, updateUserStatus, makeAdmin };

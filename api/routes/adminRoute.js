@@ -2,6 +2,7 @@ const express = require("express");
 const {
   getAllUser,
   updateUserStatus,
+  makeAdmin,
 } = require("../controllers/adminController");
 const isAdmin = require("../middleware/validateAdmin");
 const validateToken = require("../middleware/validateTokenHandler");
@@ -19,6 +20,13 @@ router.put(
   validateVerify,
   isAdmin,
   updateUserStatus
+);
+router.put(
+  "/updatestatusadmin",
+  validateToken,
+  validateVerify,
+  isAdmin,
+  makeAdmin
 );
 
 module.exports = router;
