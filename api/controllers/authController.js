@@ -96,15 +96,13 @@ const signUp = async (req, res) => {
     console.log(`User created ${savedUser}`);
     console.log(`User token ${token}`);
 
-    res
-      .status(200)
-      .json({
-        token,
-        id: savedUser._id,
-        username: savedUser.username,
-        email: savedUser.email,
-        regno: savedUser.regno,
-      });
+    res.status(200).json({
+      token,
+      id: savedUser._id,
+      username: savedUser.username,
+      email: savedUser.email,
+      regno: savedUser.regno,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -169,7 +167,7 @@ const resendOTP = async (req, res) => {
       });
       if (!user.verified) {
         await VerificationModel.deleteMany({ id });
-        await sendVerificationMail(savedUser);
+        await sendVerificationMail(user);
         res.status(200).json({ message: "sent otp again" });
       } else {
         res.status(200).json({ message: "Already verified" });
