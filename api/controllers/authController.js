@@ -9,7 +9,6 @@ const nodemailer = require("nodemailer");
 const { v4: uuidv4 } = require("uuid");
 
 require("dotenv").config();
-
 const signUp = async (req, res) => {
   const { username, email, regno, password, confirmpassword } = req.body;
   console.log(req.body);
@@ -28,17 +27,30 @@ const signUp = async (req, res) => {
 
     console.log("userAvailable", userAvailable);
 
-    if (userAvailable && !userAvailable.verified) {
+    const userToDelete = await VerificationModel.findOne({ email });
+
+    console.log("userToDelete", userToDelete);
+    if (userAvailable && !userAvailable.verified && userToDelete) {
+      if (Date.now() > userToDelete.expiresAt) {
+        await UserModel.deleteOne({ _id: userAvailable._id }); // Delete the unverified user
+        console.log(`Deleted unverified user: ${userAvailable.email}`);
+        return res.status(400).json({
+          message:
+            "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
+        });
+      }
       return res.status(400).json({
         message:
-          "account already created and otp is also sent but not verified.Try again after 15mins",
+          "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
       });
     }
+
     if (userAvailable && userAvailable.verified) {
       return res.status(400).json({
         message: "An account with this email already exists and is verified.",
       });
     }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
     console.log("Hashed Password: ", hashedPassword);
@@ -46,24 +58,18 @@ const signUp = async (req, res) => {
     const isSC = !isJC;
 
     const newUser = new UserModel({
-      username: username,
-      email: email,
-      regno: regno,
+      username,
+      email,
+      regno,
       password: hashedPassword,
       verified: false,
       roundOne: false,
       roundTwo: false,
       roundThree: false,
-      isJC: isJC,
-      isSC: isSC,
+      isJC,
+      isSC,
     });
     const savedUser = await newUser.save();
-
-    const userToDelete = await VerificationModel.findOne({ email: email });
-    if (!userToDelete.verified && Date.now() > userToDelete.expiresAt) {
-      await UserModel.deleteOne({ _id: userToDelete._id });
-      console.log(`Deleted unverified user: ${userToDelete.email}`);
-    }
 
     if (!savedUser) {
       return res.status(500).json({ message: "Failed to save user" });
