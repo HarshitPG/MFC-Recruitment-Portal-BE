@@ -1,4 +1,5 @@
 const UserModel = require("../models/userModel");
+const mongoose = require("mongoose");
 
 const UpdateUser = async (req, res) => {
   const { id } = req.params;
@@ -103,7 +104,7 @@ const getuser = async (req, res) => {
     const userId = req.params.id;
     const userData = await UserModel.aggregate([
       {
-        $match: { _id: mongoose.Types.ObjectId(userId) },
+        $match: { _id: new mongoose.Types.ObjectId(userId) },
       },
       {
         $lookup: {

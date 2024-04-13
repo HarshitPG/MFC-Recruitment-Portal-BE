@@ -188,7 +188,7 @@ const login = async (req, res) => {
     if (user && user.verified) {
       const validity = await bcrypt.compare(password, user.password);
       if (!validity) {
-        res.send(400).json("Wrong password");
+        res.status(400).json("Wrong password");
       } else {
         const token = jwt.sign(
           {
