@@ -208,7 +208,15 @@ const login = async (req, res) => {
 
         console.log(`User created login : ${user}`);
         console.log(`User token login: ${token}`);
-        res.status(200).json({ token });
+        res.status(200).json({
+          token,
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          regno: user.regno,
+          verified: user.verified,
+          admin: user.admin,
+        });
       }
     } else {
       res.status(404).json("User not found");

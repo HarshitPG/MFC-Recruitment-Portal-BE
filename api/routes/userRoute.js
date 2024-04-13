@@ -2,6 +2,7 @@ const express = require("express");
 const {
   UpdateUserDomain,
   UpdateUser,
+  getuser,
 } = require("../controllers/userController");
 const validateToken = require("../middleware/validateTokenHandler");
 const validateVerify = require("../middleware/validateVerify");
@@ -18,5 +19,5 @@ router.put(
   validateVerify,
   UpdateUserDomain
 );
-
+router.get("/user/:id", validateToken, validateVerify, getuser);
 module.exports = router;
