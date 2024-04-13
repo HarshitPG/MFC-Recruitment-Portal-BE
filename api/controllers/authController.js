@@ -96,7 +96,15 @@ const signUp = async (req, res) => {
     console.log(`User created ${savedUser}`);
     console.log(`User token ${token}`);
 
-    res.status(200).json({ token });
+    res
+      .status(200)
+      .json({
+        token,
+        id: savedUser._id,
+        username: savedUser.username,
+        email: savedUser.email,
+        regno: savedUser.regno,
+      });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -124,11 +132,15 @@ const verifyOTP = async (req, res) => {
         if (expiresAt < Date.now()) {
           await VerificationModel.deleteMany({ user_id: id });
 
-          throw new Error("Code has expired. please req again ");
+          res
+            .status(200)
+            .json({ message: "Code has expired. please req again " });
         } else {
           const validOTP = await bcrypt.compare(otp, hashedOTP);
           if (!validOTP) {
-            throw new Error("Invalid please check inbox for latest otp");
+            res
+              .status(200)
+              .json({ message: "Invalid please check inbox for latest otp" });
           } else {
             await UserModel.updateOne({ _id: id }, { verified: true });
             await VerificationModel.deleteMany({ user_id: id });
@@ -261,9 +273,10 @@ const refreshToken = async (req, res) => {
 };
 
 const requestPasswordReset = async (req, res) => {
-  const { email } = req.body;
+  const { email, regno } = req.body;
+
   try {
-    const user = await UserModel.findOne({ email: email });
+    const user = await UserModel.findOne({ email: email, regno: regno });
 
     if (user) {
       if (!user.emailToken) {
