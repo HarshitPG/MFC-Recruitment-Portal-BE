@@ -59,6 +59,12 @@ const signUp = async (req, res) => {
     });
     const savedUser = await newUser.save();
 
+    const userToDelete = await VerificationModel.findOne({ email: email });
+    if (!userToDelete.verified && Date.now() > userToDelete.expiresAt) {
+      await UserModel.deleteOne({ _id: userToDelete._id });
+      console.log(`Deleted unverified user: ${userToDelete.email}`);
+    }
+
     if (!savedUser) {
       return res.status(500).json({ message: "Failed to save user" });
     }
@@ -83,12 +89,6 @@ const signUp = async (req, res) => {
 
     console.log(`User created ${savedUser}`);
     console.log(`User token ${token}`);
-
-    const userToDelete = await VerificationModel.findOne({ email: email });
-    if (!userToDelete.verified && Date.now() > userToDelete.expiresAt) {
-      await UserModel.deleteOne({ _id: userToDelete._id });
-      console.log(`Deleted unverified user: ${userToDelete.email}`);
-    }
 
     res.status(200).json({ token });
   } catch (error) {

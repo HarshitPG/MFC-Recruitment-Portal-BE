@@ -1,4 +1,5 @@
-const multer = require("multer");
+// const multer = require("multer");
+const UserModel = require("../models/userModel");
 const TechTaskModel = require("../models/techTaskModel");
 const ManagmentTaskModel = require("../models/managementModel");
 const DesignTaskModel = require("../models/designTaskModel");
@@ -152,7 +153,12 @@ const uploadTaskManagment = async (req, res) => {
       subdomain: subdomain,
       isDone: true,
     });
+
     const savedTask = await task.save();
+
+    await UserModel.findByIdAndUpdate(id, {
+      isManagementDone: true,
+    });
 
     res.json({ savedTask });
   } catch (error) {
@@ -181,6 +187,9 @@ const uploadTaskTech = async (req, res) => {
       isDone: true,
     });
     const savedTask = await task.save();
+    await UserModel.findByIdAndUpdate(id, {
+      isTechDone: true,
+    });
 
     res.json({ savedTask });
   } catch (error) {
@@ -190,7 +199,24 @@ const uploadTaskTech = async (req, res) => {
 
 const uploadDesignTech = async (req, res) => {
   const { id } = req.params;
-  const { question1, question2, question3, subdomain } = req.body;
+  const {
+    question1,
+    question2,
+    question3,
+    question4,
+    question5,
+    question6,
+    question7,
+    question8,
+    question9,
+    question10,
+    question11,
+    question12,
+    question13,
+    question14,
+    question15,
+    subdomain,
+  } = req.body;
   try {
     const user = await DesignTaskModel.findOne({
       user_id: id,
@@ -205,10 +231,26 @@ const uploadDesignTech = async (req, res) => {
       question1: question1,
       question2: question2,
       question3: question3,
+      question4: question4,
+      question5: question5,
+      question6: question6,
+      question7: question7,
+      question8: question8,
+      question9: question9,
+      question10: question10,
+      question11: question11,
+      question12: question12,
+      question13: question13,
+      question14: question14,
+      question15: question15,
       subdomain: subdomain,
       isDone: true,
     });
     const savedTask = await task.save();
+
+    await UserModel.findByIdAndUpdate(id, {
+      isDesignDone: true,
+    });
 
     res.json({ savedTask });
   } catch (error) {

@@ -100,6 +100,18 @@ const UserSchema = new Schema(
     isJC: {
       type: Boolean,
     },
+    isDesignDone: {
+      type: Boolean,
+      default: false,
+    },
+    isManagementDone: {
+      type: Boolean,
+      default: false,
+    },
+    isTechDone: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
