@@ -32,7 +32,7 @@ const signUp = async (req, res) => {
     console.log("userToDelete", userToDelete);
     if (userAvailable && !userAvailable.verified && userToDelete) {
       if (Date.now() > userToDelete.expiresAt) {
-        await UserModel.deleteOne({ _id: userAvailable._id }); // Delete the unverified user
+        await UserModel.deleteOne({ _id: userAvailable._id });
         console.log(`Deleted unverified user: ${userAvailable.email}`);
         return res.status(400).json({
           message:
