@@ -3,14 +3,14 @@ require("dotenv").config();
 
 const createMailTransporter = require("./mailTransporter");
 
-export async function sendPasswordResetMail(user) {
+async function sendPasswordResetMail(user) {
   const transporter = await createMailTransporter();
 
   const mailOptions = {
     from: process.env.AUTH_EMAIL,
     to: user.email,
     subject: "testing verify email",
-    html: `<br/>Reset your password by clicking this link: <a href='${process.env.CLIENT_URL}/updatePassword?Email=${user.username}&emailToken=${user.emailToken}'>Reset Your Password</a>`,
+    html: `<br/>Reset your password by clicking this link: <a href='${process.env.CLIENT_URL}/resetpassword?Email=${user.username}&emailToken=${user.emailToken}'>Reset Your Password</a>  <p>   http://localhost:5173/resetpassword?Email=${user.username}&emailToken=${user.emailToken}</p>`,
     // http://localhost:3000/updatePassword?Email=test@example.com&emailToken=yourEmailTokenHere
   };
 
@@ -23,3 +23,5 @@ export async function sendPasswordResetMail(user) {
     throw error;
   }
 }
+
+module.exports = sendPasswordResetMail;

@@ -1,6 +1,7 @@
 const UserModel = require("../models/userModel");
 const VerificationModel = require("../models/verificationModel");
 const sendVerificationMail = require("../utils/sendverification");
+const sendPasswordResetMail = require("../utils/sendVerificationPassword");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -285,9 +286,11 @@ const requestPasswordReset = async (req, res) => {
     const user = await UserModel.findOne({ email: email, regno: regno });
 
     if (user) {
+      console.log(user);
       if (!user.emailToken) {
         const emailToken = crypto.randomBytes(64).toString("hex");
         user.emailToken = emailToken;
+        console.log(emailToken);
         await user.save();
       }
 
@@ -306,16 +309,21 @@ const requestPasswordReset = async (req, res) => {
 };
 
 const updatePassword = async (req, res) => {
-  const { username, password, emailToken } = req.body;
+  const { username, password, emailToken, confirmpassword } = req.body;
   try {
     const user = await UserModel.findOne({ username, emailToken });
+    console.log(req.body);
 
     if (user) {
+      if (password !== confirmpassword) {
+        return res.status(400).json({ message: "Passwords do not match" });
+      }
       const salt = await bcrypt.genSalt(10);
       const hashedPass = await bcrypt.hash(password, salt);
       user.password = hashedPass;
       user.isVerified = true;
       user.emailToken = null;
+      console.log("user:user", user);
       await user.save();
 
       res.status(200).json({ message: "Password updated successfully." });

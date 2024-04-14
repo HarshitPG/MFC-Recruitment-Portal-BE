@@ -4,6 +4,8 @@ const {
   signUp,
   verifyOTP,
   resendOTP,
+  requestPasswordReset,
+  updatePassword,
 } = require("../controllers/authController");
 const validateToken = require("../middleware/validateTokenHandler");
 const app = express();
@@ -16,5 +18,7 @@ router.post("/signup", signUp);
 router.post("/login", login);
 router.post("/verifyotp/:id", validateToken, verifyOTP);
 router.post("/resendotp/:id", validateToken, resendOTP);
+router.post("/requestPasswordReset", requestPasswordReset);
+router.post("/updatepassword", updatePassword);
 
 module.exports = router;
