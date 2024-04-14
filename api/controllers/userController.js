@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const UpdateUser = async (req, res) => {
   const { id } = req.params;
   const {
-    regno,
+    // regno,
     mobile,
     emailpersonal,
     domain,
@@ -15,7 +15,7 @@ const UpdateUser = async (req, res) => {
   } = req.body;
   try {
     if (
-      !regno ||
+      // !regno ||
       !mobile ||
       !emailpersonal ||
       !domain
