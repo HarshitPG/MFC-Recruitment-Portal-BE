@@ -62,15 +62,15 @@ const UserSchema = new Schema(
       type: [String],
       enum: ["tech", "design", "management"],
     },
-    volunteered: {
-      type: Boolean,
-    },
+    // volunteered: {
+    //   type: Boolean,
+    // },
     volunteeredEvent: {
       type: String,
     },
-    participated: {
-      type: Boolean,
-    },
+    // participated: {
+    //   type: Boolean,
+    // },
     participatedEvent: {
       type: String,
     },

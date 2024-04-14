@@ -8,9 +8,9 @@ const UpdateUser = async (req, res) => {
     mobile,
     emailpersonal,
     domain,
-    volunteered,
+    // volunteered,
     volunteeredEvent,
-    participated,
+    // participated,
     participatedEvent,
   } = req.body;
   try {
@@ -18,19 +18,19 @@ const UpdateUser = async (req, res) => {
       !regno ||
       !mobile ||
       !emailpersonal ||
-      !domain ||
-      !volunteered ||
-      !participated
+      !domain
+      // !volunteered ||
+      // !participated
     ) {
       return res
         .status(400)
         .json({ message: "All fields are required booboo" });
     }
-    const updateObj = {};
-    if (volunteeredEvent !== undefined)
-      updateObj.volunteeredEvent = volunteeredEvent;
-    if (participatedEvent !== undefined)
-      updateObj.participated = participatedEvent;
+    // const updateObj = {};
+    // if (volunteeredEvent !== undefined)
+    //   updateObj.volunteeredEvent = volunteeredEvent;
+    // if (participatedEvent !== undefined)
+    //   updateObj.participated = participatedEvent;
 
     const postinfo = await UserModel.findOne({
       _id: id,
@@ -55,10 +55,10 @@ const UpdateUser = async (req, res) => {
           mobile: mobile,
           emailpersonal: emailpersonal,
           domain: domain,
-          volunteered: volunteered,
-          // volunteeredEvent: volunteeredEvent,
-          participated: participated,
-          // participatedEvent: participatedEvent,
+          // volunteered: volunteered,
+          volunteeredEvent: volunteeredEvent,
+          // participated: participated,
+          participatedEvent: participatedEvent,
           isProfileDone: true,
           $set: updateObj,
         }
