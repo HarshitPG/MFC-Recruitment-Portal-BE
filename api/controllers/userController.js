@@ -3,25 +3,11 @@ const mongoose = require("mongoose");
 
 const UpdateUser = async (req, res) => {
   const { id } = req.params;
-  const {
-    // regno,
-    mobile,
-    emailpersonal,
-    domain,
-    // volunteered,
-    volunteeredEvent,
-    // participated,
-    participatedEvent,
-  } = req.body;
+  const { mobile, emailpersonal, domain, volunteeredEvent, participatedEvent } =
+    req.body;
+  console.log(req.body);
   try {
-    if (
-      // !regno ||
-      !mobile ||
-      !emailpersonal ||
-      !domain
-      // !volunteered ||
-      // !participated
-    ) {
+    if (!mobile || !emailpersonal || !domain) {
       return res
         .status(400)
         .json({ message: "All fields are required booboo" });
@@ -34,7 +20,7 @@ const UpdateUser = async (req, res) => {
 
     const postinfo = await UserModel.findOne({
       _id: id,
-      regno: regno,
+      // regno: regno,
     });
     if (!postinfo) {
       return res.status(200).json({
@@ -49,7 +35,7 @@ const UpdateUser = async (req, res) => {
       });
     } else {
       const updatedUser = await UserModel.findOneAndUpdate(
-        { _id: id, regno: regno },
+        { _id: id },
 
         {
           mobile: mobile,
@@ -60,10 +46,10 @@ const UpdateUser = async (req, res) => {
           // participated: participated,
           participatedEvent: participatedEvent,
           isProfileDone: true,
-          $set: updateObj,
+          // $set: updateObj,
         }
       );
-      res.status(200).json(updatedUser);
+      res.status(200).json("OK");
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
