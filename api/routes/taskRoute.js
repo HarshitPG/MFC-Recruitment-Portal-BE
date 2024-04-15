@@ -3,7 +3,9 @@ const {
   uploadFileTech,
   uploadFile,
   downloadFileTech,
+  uploadDesignTech,
   uploadTaskManagment,
+  uploadTaskTech,
   uploadFileDesign,
   downloadFileDesign,
 } = require("../controllers/taskController");
@@ -38,7 +40,7 @@ const router = express.Router();
 // );
 // router.get("/downloadtaskdesign/:id", validateDesign, downloadFileDesign);
 router.post("/management/:id", validateManagement, uploadTaskManagment);
-router.post("/tech/:id", validateTech, validateTech);
-router.post("/design/:id", validateDesign, validateDesign);
+router.post("/tech/:id", validateTech, uploadTaskTech);
+router.post("/design/:id", validateDesign, uploadDesignTech);
 
 module.exports = router;
