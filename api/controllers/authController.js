@@ -118,7 +118,7 @@ const verifyOTP = async (req, res) => {
     } else {
       const user = await VerificationModel.findOne({
         user_id: id,
-        email: email,
+        // email: email,
       });
 
       if (!user) {
