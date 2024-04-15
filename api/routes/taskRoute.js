@@ -38,7 +38,7 @@ const router = express.Router();
 // );
 // router.get("/downloadtaskdesign/:id", validateDesign, downloadFileDesign);
 router.post("/management/:id", validateManagement, uploadTaskManagment);
-router.post("/tech/:id", validateTech, uploadTaskManagment);
-router.post("/design/:id", validateDesign, uploadTaskManagment);
+router.post("/tech/:id", validateTech, validateTech);
+router.post("/design/:id", validateDesign, validateDesign);
 
 module.exports = router;

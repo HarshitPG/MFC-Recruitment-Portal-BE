@@ -202,6 +202,7 @@ const login = async (req, res) => {
             roundTwo: user.roundTwo,
             roundThree: user.roundThree,
             admin: user.admin,
+            domain: user.domain,
           },
           process.env.ACCESS_TOKEN_SECERT,
           { expiresIn: "20min" }

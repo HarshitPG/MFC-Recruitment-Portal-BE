@@ -168,7 +168,7 @@ const uploadTaskManagment = async (req, res) => {
 
 const uploadTaskTech = async (req, res) => {
   const { id } = req.params;
-  const { question1, question2, question3, subdomain } = req.body;
+  const { question1, question2, question3, question4, subdomain } = req.body;
   try {
     const user = await TechTaskModel.findOne({
       user_id: id,
@@ -183,6 +183,7 @@ const uploadTaskTech = async (req, res) => {
       question1: question1,
       question2: question2,
       question3: question3,
+      question4: question4,
       subdomain: subdomain,
       isDone: true,
     });
