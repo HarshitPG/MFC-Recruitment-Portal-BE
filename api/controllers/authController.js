@@ -112,13 +112,13 @@ const signUp = async (req, res) => {
 const verifyOTP = async (req, res) => {
   try {
     const { id } = req.params;
-    const { otp, email } = req.body;
+    const { otp } = req.body;
     if (!id || !otp) {
       res.status(200).json({ message: "Invalid token otp or email" });
     } else {
       const user = await VerificationModel.findOne({
         user_id: id,
-        email: email,
+        // email: email,
       });
 
       if (!user) {

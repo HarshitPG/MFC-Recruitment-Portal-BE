@@ -129,6 +129,23 @@ const uploadTaskManagment = async (req, res) => {
     question6,
     question7,
     question8,
+    question9,
+    question10,
+    question11,
+    question12,
+    question13,
+    question14,
+    question15,
+    question16,
+    question17,
+    question18,
+    question19,
+    question20,
+    question21,
+    question22,
+    question23,
+    question24,
+    question25,
     subdomain,
   } = req.body;
   try {
@@ -136,7 +153,7 @@ const uploadTaskManagment = async (req, res) => {
       user_id: id,
     });
 
-    if (user.isDone === true) {
+    if (user && user.isDone === true) {
       return res.status(200).json({ message: "Already file submitted" });
     }
 
@@ -150,6 +167,24 @@ const uploadTaskManagment = async (req, res) => {
       question6: question6,
       question7: question7,
       question8: question8,
+      question9: question9,
+      question10: question10,
+      question11: question11,
+      question12: question12,
+      question13: question13,
+      question14: question14,
+      question15: question15,
+      question16: question16,
+      question17: question17,
+      question18: question18,
+      question19: question19,
+      question20: question20,
+      question21: question21,
+      question22: question22,
+      question23: question23,
+      question24: question24,
+      question25: question25,
+
       subdomain: subdomain,
       isDone: true,
     });
@@ -167,14 +202,16 @@ const uploadTaskManagment = async (req, res) => {
 };
 
 const uploadTaskTech = async (req, res) => {
-  const { id } = req.params;
-  const { question1, question2, question3, question4, subdomain } = req.body;
   try {
+    const { id } = req.params;
+    const { question1, question2, question3, question4, subdomain } = req.body;
+    console.log(id);
     const user = await TechTaskModel.findOne({
       user_id: id,
     });
+    console.log("user2", user);
 
-    if (user.isDone === true) {
+    if (user && user.isDone === true) {
       return res.status(200).json({ message: "Already file submitted" });
     }
 
@@ -223,7 +260,7 @@ const uploadDesignTech = async (req, res) => {
       user_id: id,
     });
 
-    if (user.isDone === true) {
+    if (user && user.isDone === true) {
       return res.status(200).json({ message: "Already file submitted" });
     }
 

@@ -9,48 +9,61 @@ const TechTaskSchema = new Schema({
   },
   subdomain: {
     type: [String],
-    enum: [
-      "frontend",
-      "backend",
-      "fullstack",
-      "app",
-      "ai/ml",
-      "cp",
-      "blockchain",
-      "gamedev+ar/vr",
-    ],
+    required: true,
   },
-  // file: {
-  //   data: Buffer,
-  //   contentType: String,
-  // },
   question1: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 100;
+        return value.every((item) => {
+          if (item === null) return true; // Allow null values
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
       message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question2: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 100;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
       message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question3: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 100;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
       message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
+  question4: {
+    type: [String],
+    validate: {
+      validator: function (value) {
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
+      },
+      message: "Maximum word limit exceeded (100 words).",
+    },
+    required: true,
+  },
+
   isDone: {
     type: Boolean,
   },

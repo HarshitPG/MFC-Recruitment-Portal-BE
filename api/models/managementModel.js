@@ -89,6 +89,160 @@ const ManagementTaskSchema = new Schema({
       message: "Maximum word limit exceeded (500 words).",
     },
   },
+  question9: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question10: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question11: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question12: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question13: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question14: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question15: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question16: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question17: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question18: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question19: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question20: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question21: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question22: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question23: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question24: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+  question25: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
+
   isDone: {
     type: Boolean,
     default: false,
