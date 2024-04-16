@@ -89,6 +89,8 @@ const signUp = async (req, res) => {
         roundTwo: savedUser.roundTwo,
         roundThree: savedUser.roundThree,
         admin: savedUser.admin,
+        isJC: savedUser.isJC,
+        isSC: savedUser.isSC,
       },
       process.env.ACCESS_TOKEN_SECERT,
       { expiresIn: "15m" }
@@ -203,6 +205,8 @@ const login = async (req, res) => {
             roundThree: user.roundThree,
             admin: user.admin,
             domain: user.domain,
+            isJC: user.isJC,
+            isSC: user.isSC,
           },
           process.env.ACCESS_TOKEN_SECERT,
           { expiresIn: "20min" }

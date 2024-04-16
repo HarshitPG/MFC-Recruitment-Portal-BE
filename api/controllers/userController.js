@@ -133,6 +133,8 @@ const getuser = async (req, res) => {
           roundTwo: 1,
           roundThree: 1,
           isProfileDone: 1,
+          isJC: 1,
+          isSC: 1,
           techSubdomains: "$techTasks.subdomain",
           techIsDone: "$techTasks.isDone",
           designSubdomains: "$designTasks.subdomain",
