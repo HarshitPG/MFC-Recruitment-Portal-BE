@@ -242,6 +242,15 @@ const ManagementTaskSchema = new Schema({
       message: "Maximum word limit exceeded (500 words).",
     },
   },
+  question26: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return value.trim().split(/\s+/).length <= 500;
+      },
+      message: "Maximum word limit exceeded (500 words).",
+    },
+  },
 
   isDone: {
     type: Boolean,
