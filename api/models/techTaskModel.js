@@ -16,7 +16,7 @@ const TechTaskSchema = new Schema({
     validate: {
       validator: function (value) {
         return value.every((item) => {
-          if (item === null) return true; // Allow null values
+          if (item === null) return true;
           return item.trim().split(/\s+/).length <= 100;
         });
       },

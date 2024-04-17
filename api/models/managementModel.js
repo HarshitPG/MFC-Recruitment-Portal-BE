@@ -9,247 +9,344 @@ const ManagementTaskSchema = new Schema({
   },
   subdomain: {
     type: [String],
-    enum: [
-      "generaloperations",
-      "outreach",
-      "publicity",
-      "finance",
-      "editorial",
-    ],
   },
   question1: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question2: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question3: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question4: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question5: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question6: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question7: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question8: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question9: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question10: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question11: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question12: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question13: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question14: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question15: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question16: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question17: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question18: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question19: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question20: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question21: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question22: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question23: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question24: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question25: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
   question26: {
-    type: String,
+    type: [String],
     validate: {
       validator: function (value) {
-        return value.trim().split(/\s+/).length <= 500;
+        return value.every((item) => {
+          if (item === null) return true;
+          return item.trim().split(/\s+/).length <= 100;
+        });
       },
-      message: "Maximum word limit exceeded (500 words).",
+      message: "Maximum word limit exceeded (100 words).",
     },
+    required: true,
   },
 
   isDone: {
