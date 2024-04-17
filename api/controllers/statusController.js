@@ -1,3 +1,4 @@
+const UserModel = require("../models/userModel");
 const applicationStatus = async (req, res) => {
   const { id } = req.params;
   try {
@@ -42,8 +43,10 @@ const applicationTechStatus = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await UserModel.findOne({
-      user_id: id,
+      _id: id,
     });
+    console.log("user23", id);
+    console.log("ouser23", user);
 
     if (!user) {
       return res.status(404).json({
@@ -110,7 +113,7 @@ const applicationDesignStatus = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await UserModel.findOne({
-      user_id: id,
+      _id: id,
     });
 
     if (!user) {
@@ -183,7 +186,7 @@ const applicationManagementStatus = async (req, res) => {
   const { id } = req.params;
   try {
     const user = await UserModel.findOne({
-      user_id: id,
+      _id: id,
     });
 
     if (!user) {
