@@ -131,7 +131,7 @@ const applicationDesignStatus = async (req, res) => {
     if (!user.isDesignDone && !user.roundOne) {
       return res.status(200).json({
         message:
-          "Your application for the Tech Domain is not submitted. Kindly complete and submit it for evaluation.",
+          "Your application for the Design Domain is not submitted. Kindly complete and submit it for evaluation.",
       });
     }
 
