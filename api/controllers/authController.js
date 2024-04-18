@@ -2,6 +2,7 @@ const UserModel = require("../models/userModel");
 const VerificationModel = require("../models/verificationModel");
 const sendVerificationMail = require("../utils/sendverification");
 const sendPasswordResetMail = require("../utils/sendVerificationPassword");
+const allowedEmailsData = require("../../allowedEmails.json");
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -14,6 +15,10 @@ const signUp = async (req, res) => {
   const { username, email, regno, password, confirmpassword } = req.body;
   console.log(req.body);
   try {
+    const emailList = allowedEmailsData.allowedEmails;
+    if (!emailList.includes(email)) {
+      return res.status(400).json({ error: "User is not registered" });
+    }
     if (!username || !email || !regno || !password || !confirmpassword) {
       return res.status(400).json({ message: "All fields are required" });
     }
