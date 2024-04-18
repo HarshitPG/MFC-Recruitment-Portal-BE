@@ -98,7 +98,7 @@ const signUp = async (req, res) => {
         isSC: savedUser.isSC,
       },
       process.env.ACCESS_TOKEN_SECERT,
-      { expiresIn: "15m" }
+      { expiresIn: "15d" }
     );
 
     console.log(`User created ${savedUser}`);
@@ -214,7 +214,7 @@ const login = async (req, res) => {
             isSC: user.isSC,
           },
           process.env.ACCESS_TOKEN_SECERT,
-          { expiresIn: "20min" }
+          { expiresIn: "1d" }
         );
 
         console.log(`User created login : ${user}`);
