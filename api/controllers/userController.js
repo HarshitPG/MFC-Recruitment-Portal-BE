@@ -58,15 +58,15 @@ const UpdateUser = async (req, res) => {
 
 const UpdateUserDomain = async (req, res) => {
   const { id } = req.params;
-  const { email, regno, domain } = req.body;
+  const { domain } = req.body;
   try {
-    if (!email || !regno || !domain) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
+    console.log(req.body);
+    console.log("req.params", req.params);
+
     const postinfo = await UserModel.findOne({
-      user_id: id,
-      email: email,
-      regno: regno,
+      _id: id,
+      // email: email,
+      // regno: regno,
     });
     if (!postinfo) {
       return res.status(200).json({
@@ -76,8 +76,9 @@ const UpdateUserDomain = async (req, res) => {
     }
 
     const updatedUser = await UserModel.findOneAndUpdate(
-      { user_id: id, email: email, regno: regno },
-      { domain: domain }
+      { _id: id },
+      { domain: domain },
+      { new: true }
     );
     res.status(200).json(updatedUser);
   } catch (error) {
