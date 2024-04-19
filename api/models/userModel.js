@@ -14,6 +14,7 @@ const UserSchema = new Schema(
       trim: true,
       lowercase: true,
       match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      unique: true,
     },
     regno: {
       type: String,

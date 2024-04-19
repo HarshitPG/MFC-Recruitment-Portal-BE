@@ -17,14 +17,16 @@ const signUp = async (req, res) => {
   try {
     const emailList = allowedEmailsData.allowedEmails;
     if (!emailList.includes(email)) {
-      return res.status(400).json({ error: "User is not registered" });
+      return res
+        .status(400)
+        .json({ error: "User have not enrolled in MFC-VIT" });
     }
     if (!username || !email || !regno || !password || !confirmpassword) {
-      return res.status(400).json({ message: "All fields are required" });
+      return res.status(400).json({ error: "All fields are required" });
     }
 
     if (password !== confirmpassword) {
-      return res.status(400).json({ message: "Passwords do not match" });
+      return res.status(400).json({ error: "Passwords do not match" });
     }
 
     const userAvailable = await UserModel.findOne({
@@ -41,19 +43,19 @@ const signUp = async (req, res) => {
         await UserModel.deleteOne({ _id: userAvailable._id });
         console.log(`Deleted unverified user: ${userAvailable.email}`);
         return res.status(400).json({
-          message:
+          error:
             "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
         });
       }
       return res.status(400).json({
-        message:
+        error:
           "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
       });
     }
 
     if (userAvailable && userAvailable.verified) {
       return res.status(400).json({
-        message: "An account with this email already exists and is verified.",
+        error: "An account with this email already exists and is verified.",
       });
     }
 
@@ -78,7 +80,7 @@ const signUp = async (req, res) => {
     const savedUser = await newUser.save();
 
     if (!savedUser) {
-      return res.status(500).json({ message: "Failed to save user" });
+      return res.status(500).json({ error: "Failed to save user" });
     }
 
     await sendVerificationMail(savedUser);
@@ -311,7 +313,7 @@ const requestPasswordReset = async (req, res) => {
           "Email token for password reset sent to the user's email address.",
       });
     } else {
-      res.status(404).json("User not found");
+      res.status(404).json({ error: "User not found" });
     }
   } catch (err) {
     res.status(500).json(err.message);
