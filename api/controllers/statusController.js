@@ -60,7 +60,7 @@ const applicationTechStatus = async (req, res) => {
       });
     }
 
-    if (user.domain.includes("tech") && !user.isTechDone && !user.roundOne) {
+    if (user.domain.includes("tech") && !user.isTechDone) {
       return res.status(200).json({
         message:
           "Your application for the Tech Domain is not submitted. Kindly complete and submit it for evaluation.",
@@ -140,11 +140,7 @@ const applicationDesignStatus = async (req, res) => {
       });
     }
 
-    if (
-      user.domain.includes("design") &&
-      !user.isDesignDone &&
-      !user.roundOne
-    ) {
+    if (user.domain.includes("design") && !user.isDesignDone) {
       return res.status(200).json({
         message:
           "Your application for the Design Domain is not submitted. Kindly complete and submit it for evaluation.",
@@ -224,11 +220,7 @@ const applicationManagementStatus = async (req, res) => {
       });
     }
 
-    if (
-      user.domain.includes("management") &&
-      !user.isManagementDone &&
-      !user.roundOne
-    ) {
+    if (user.domain.includes("management") && !user.isManagementDone) {
       return res.status(200).json({
         message:
           "Your application for the management Domain is not submitted. Kindly complete and submit it for evaluation.",
