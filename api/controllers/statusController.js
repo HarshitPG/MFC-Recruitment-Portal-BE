@@ -60,28 +60,39 @@ const applicationTechStatus = async (req, res) => {
       });
     }
 
-    if (!user.isTechDone && !user.roundOne) {
+    if (user.domain.includes("tech") && !user.isTechDone && !user.roundOne) {
       return res.status(200).json({
         message:
           "Your application for the Tech Domain is not submitted. Kindly complete and submit it for evaluation.",
       });
     }
 
-    if (user.isTechDone && !user.roundOne) {
+    if (user.domain.includes("tech") && user.isTechDone && !user.roundOne) {
       return res.status(200).json({
         message:
           "Your application for the Tech Domain is under evaluation. Stay tuned for results.",
       });
     }
 
-    if (user.isTechDone && user.roundOne && !user.roundTwo) {
+    if (
+      user.domain.includes("tech") &&
+      user.isTechDone &&
+      user.roundOne &&
+      !user.roundTwo
+    ) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the second round of Tech. All the best.",
       });
     }
 
-    if (user.isTechDone && user.roundOne && user.roundTwo && !user.roundThree) {
+    if (
+      user.domain.includes("tech") &&
+      user.isTechDone &&
+      user.roundOne &&
+      user.roundTwo &&
+      !user.roundThree
+    ) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the third round. All the best.",
@@ -89,6 +100,7 @@ const applicationTechStatus = async (req, res) => {
     }
 
     if (
+      user.domain.includes("tech") &&
       user.isTechDone &&
       user.roundOne &&
       user.roundTwo &&
@@ -128,21 +140,30 @@ const applicationDesignStatus = async (req, res) => {
       });
     }
 
-    if (!user.isDesignDone && !user.roundOne) {
+    if (
+      user.domain.includes("design") &&
+      !user.isDesignDone &&
+      !user.roundOne
+    ) {
       return res.status(200).json({
         message:
           "Your application for the Design Domain is not submitted. Kindly complete and submit it for evaluation.",
       });
     }
 
-    if (user.isDesignDone && !user.roundOne) {
+    if (user.domain.includes("design") && user.isDesignDone && !user.roundOne) {
       return res.status(200).json({
         message:
           "Your application for the Design Domain is under evaluation. Stay tuned for results.",
       });
     }
 
-    if (user.isDesignDone && user.roundOne && !user.roundTwo) {
+    if (
+      user.domain.includes("design") &&
+      user.isDesignDone &&
+      user.roundOne &&
+      !user.roundTwo
+    ) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the second round of Tech. All the best.",
@@ -150,6 +171,7 @@ const applicationDesignStatus = async (req, res) => {
     }
 
     if (
+      user.domain.includes("design") &&
       user.isDesignDone &&
       user.roundOne &&
       user.roundTwo &&
@@ -162,6 +184,7 @@ const applicationDesignStatus = async (req, res) => {
     }
 
     if (
+      user.domain.includes("design") &&
       user.isDesignDone &&
       user.roundOne &&
       user.roundTwo &&
@@ -201,21 +224,34 @@ const applicationManagementStatus = async (req, res) => {
       });
     }
 
-    if (!user.isManagementDone && !user.roundOne) {
+    if (
+      user.domain.includes("management") &&
+      !user.isManagementDone &&
+      !user.roundOne
+    ) {
       return res.status(200).json({
         message:
           "Your application for the management Domain is not submitted. Kindly complete and submit it for evaluation.",
       });
     }
 
-    if (user.isManagementDone && !user.roundOne) {
+    if (
+      user.domain.includes("management") &&
+      user.isManagementDone &&
+      !user.roundOne
+    ) {
       return res.status(200).json({
         message:
           "Your application for the management Domain is under evaluation. Stay tuned for results.",
       });
     }
 
-    if (user.isManagementDone && user.roundOne && !user.roundTwo) {
+    if (
+      user.domain.includes("management") &&
+      user.isManagementDone &&
+      user.roundOne &&
+      !user.roundTwo
+    ) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the second round of Tech. All the best.",
@@ -223,6 +259,7 @@ const applicationManagementStatus = async (req, res) => {
     }
 
     if (
+      user.domain.includes("management") &&
       user.isManagementDone &&
       user.roundOne &&
       user.roundTwo &&
@@ -235,6 +272,7 @@ const applicationManagementStatus = async (req, res) => {
     }
 
     if (
+      user.domain.includes("management") &&
       user.isManagementDone &&
       user.roundOne &&
       user.roundTwo &&
