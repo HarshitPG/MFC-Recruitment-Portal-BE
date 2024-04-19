@@ -198,7 +198,7 @@ const login = async (req, res) => {
     if (user && user.verified) {
       const validity = await bcrypt.compare(password, user.password);
       if (!validity) {
-        res.status(400).json("Wrong password");
+        res.status(400).json({ error: "Wrong password" });
       } else {
         const token = jwt.sign(
           {
@@ -232,7 +232,7 @@ const login = async (req, res) => {
         });
       }
     } else {
-      res.status(404).json("User not found");
+      res.status(404).json({ error: "User not found" });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -340,7 +340,7 @@ const updatePassword = async (req, res) => {
 
       res.status(200).json({ message: "Password updated successfully." });
     } else {
-      res.status(404).json("Invalid username or email token.");
+      res.status(404).json({ error: "Invalid username or email token." });
     }
   } catch (err) {
     res.status(500).json(err.message);
