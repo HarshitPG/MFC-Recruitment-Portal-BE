@@ -74,14 +74,14 @@ const applicationTechStatus = async (req, res) => {
       });
     }
 
-    if (user.isTechDone && user.roundOne && user.roundTwo) {
+    if (user.isTechDone && user.roundOne && !user.roundTwo) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the second round of Tech. All the best.",
       });
     }
 
-    if (user.isTechDone && user.roundOne && user.roundTwo && user.roundThree) {
+    if (user.isTechDone && user.roundOne && user.roundTwo && !user.roundThree) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the third round. All the best.",
@@ -142,7 +142,7 @@ const applicationDesignStatus = async (req, res) => {
       });
     }
 
-    if (user.isDesignDone && user.roundOne && user.roundTwo) {
+    if (user.isDesignDone && user.roundOne && !user.roundTwo) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the second round of Tech. All the best.",
@@ -153,7 +153,7 @@ const applicationDesignStatus = async (req, res) => {
       user.isDesignDone &&
       user.roundOne &&
       user.roundTwo &&
-      user.roundThree
+      !user.roundThree
     ) {
       return res.status(200).json({
         message:
@@ -215,7 +215,7 @@ const applicationManagementStatus = async (req, res) => {
       });
     }
 
-    if (user.isManagementDone && user.roundOne && user.roundTwo) {
+    if (user.isManagementDone && user.roundOne && !user.roundTwo) {
       return res.status(200).json({
         message:
           "Congratulations! You have been selected for the second round of Tech. All the best.",
@@ -226,7 +226,7 @@ const applicationManagementStatus = async (req, res) => {
       user.isManagementDone &&
       user.roundOne &&
       user.roundTwo &&
-      user.roundThree
+      !user.roundThree
     ) {
       return res.status(200).json({
         message:
