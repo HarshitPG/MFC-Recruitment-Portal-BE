@@ -138,7 +138,7 @@ const applicationDesignStatus = async (req, res) => {
     if (user.isDesignDone && !user.roundOne) {
       return res.status(200).json({
         message:
-          "Your application for the Tech Domain is under evaluation. Stay tuned for results.",
+          "Your application for the Design Domain is under evaluation. Stay tuned for results.",
       });
     }
 
