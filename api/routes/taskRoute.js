@@ -10,6 +10,7 @@ const {
   downloadFileDesign,
 } = require("../controllers/taskController");
 const { fileCountLimit, fileSizeLimit } = require("../middleware/validateFile");
+const { rateLimiter_10min_100req } = require("../middleware/ratelimiter");
 const {
   validateTech,
   validateManagement,
@@ -39,8 +40,23 @@ const router = express.Router();
 //   uploadFileDesign
 // );
 // router.get("/downloadtaskdesign/:id", validateDesign, downloadFileDesign);
-router.post("/management/:id", validateManagement, uploadTaskManagment);
-router.post("/tech/:id", validateTech, uploadTaskTech);
-router.post("/design/:id", validateDesign, uploadDesignTech);
+router.post(
+  "/management/:id",
+  rateLimiter_10min_100req,
+  validateManagement,
+  uploadTaskManagment
+);
+router.post(
+  "/tech/:id",
+  rateLimiter_10min_100req,
+  validateTech,
+  uploadTaskTech
+);
+router.post(
+  "/design/:id",
+  rateLimiter_10min_100req,
+  validateDesign,
+  uploadDesignTech
+);
 
 module.exports = router;

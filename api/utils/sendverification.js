@@ -12,8 +12,8 @@ async function sendVerificationMail(user) {
     const mailOption = {
       from: process.env.AUTH_EMAIL,
       to: user.email,
-      subject: "testing verify email",
-      html: `<p>Enter <b>${otp}</b></p><p><b>expires in 15 mins</b></p>`,
+      subject: "Verify Email OTP",
+      html: `<p>Enter <b>${otp}</b></p><br/><p><b>expires in 15 mins</b></p>`,
     };
     const salt = await bcrypt.genSalt(10);
     const hashedOTP = await bcrypt.hash(otp, salt);

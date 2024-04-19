@@ -9,9 +9,8 @@ async function sendPasswordResetMail(user) {
   const mailOptions = {
     from: process.env.AUTH_EMAIL,
     to: user.email,
-    subject: "testing verify email",
-    html: `<br/>Reset your password by clicking this link: <a href='${process.env.CLIENT_URL}/resetpassword?Email=${user.username}&emailToken=${user.emailToken}'>Reset Your Password</a>  <p>   http://localhost:5173/resetpassword?Email=${user.username}&emailToken=${user.emailToken}</p>`,
-    // http://localhost:3000/updatePassword?Email=test@example.com&emailToken=yourEmailTokenHere
+    subject: "Reset Password Link",
+    html: `<br/>Reset your password by clicking this link: <a href='${process.env.CLIENT_URL}/resetpassword?Email=${user.username}&emailToken=${user.emailToken}'>Reset Your Password</a> `,
   };
 
   try {
