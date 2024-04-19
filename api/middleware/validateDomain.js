@@ -1,18 +1,18 @@
 const jwt = require("jsonwebtoken");
-const userModel = require("../models/userModel");
+// const userModel = require("../models/userModel");
 
 const validateTech = async (req, res, next) => {
-  let token;
-  let authHeader = req.headers.authorization || req.headers.Authorization;
-
-  if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return res
-      .status(401)
-      .json({ message: "User is not authorized or token missing" });
-  }
-
-  token = authHeader.split(" ")[1];
   try {
+    let token;
+    let authHeader = req.headers.authorization || req.headers.Authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer")) {
+      return res
+        .status(401)
+        .json({ message: "User is not authorized or token missing" });
+    }
+
+    token = authHeader.split(" ")[1];
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECERT);
     const user = decoded;
     console.log("decoded", decoded);
@@ -23,16 +23,13 @@ const validateTech = async (req, res, next) => {
     const userSubdomain = user.domain;
     const userVerified = user.verified;
 
-    if (
-      userVerified === true &&
-      userSubdomain &&
-      userSubdomain.includes("tech")
-    ) {
+    if (userVerified && userSubdomain.includes("tech")) {
       return next();
+    } else {
+      return res
+        .status(403)
+        .json({ message: "User not verified for this route or choose domain" });
     }
-    return res
-      .status(403)
-      .json({ message: "User not verified for this route or choose domain" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -61,16 +58,13 @@ const validateDesign = async (req, res, next) => {
     const userVerified = user.verified;
     const userSubdomain = user.domain;
 
-    if (
-      userVerified === true &&
-      userSubdomain &&
-      userSubdomain.includes("design")
-    ) {
+    if (userVerified && userSubdomain.includes("design")) {
       return next();
+    } else {
+      return res
+        .status(403)
+        .json({ message: "User not verified for this route or choose domain" });
     }
-    return res
-      .status(403)
-      .json({ message: "User not verified for this route or choose domain" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -78,17 +72,17 @@ const validateDesign = async (req, res, next) => {
 };
 
 const validateManagement = async (req, res, next) => {
-  let token;
-  let authHeader = req.headers.authorization || req.headers.Authorization;
-
-  if (!authHeader || !authHeader.startsWith("Bearer")) {
-    return res
-      .status(401)
-      .json({ message: "User is not authorized or token missing" });
-  }
-
-  token = authHeader.split(" ")[1];
   try {
+    let token;
+    let authHeader = req.headers.authorization || req.headers.Authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer")) {
+      return res
+        .status(401)
+        .json({ message: "User is not authorized or token missing" });
+    }
+
+    token = authHeader.split(" ")[1];
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECERT);
     const user = decoded;
     console.log("decoded", decoded);
@@ -99,16 +93,13 @@ const validateManagement = async (req, res, next) => {
     const userSubdomain = user.domain;
     const userVerified = user.verified;
 
-    if (
-      userVerified === true &&
-      userSubdomain &&
-      userSubdomain.includes("management")
-    ) {
+    if (userVerified && userSubdomain.includes("management")) {
       return next();
+    } else {
+      return res
+        .status(403)
+        .json({ message: "User not verified for this route or choose domain" });
     }
-    return res
-      .status(403)
-      .json({ message: "User not verified for this route or choose domain" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
