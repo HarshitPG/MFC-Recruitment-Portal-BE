@@ -1,8 +1,6 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
-const User = require("../models/User"); // Import the User model
-
 const validateTech = async (req, res, next) => {
   let token;
   let authHeader = req.headers.authorization || req.headers.Authorization;
@@ -17,7 +15,7 @@ const validateTech = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECERT);
     const userId = decoded.id;
-    const user = await User.findById(userId);
+    const user = await userModel.findById(userId);
     console.log("user", user);
 
     if (!user) {
@@ -57,7 +55,7 @@ const validateDesign = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECERT);
     const userId = decoded.id;
-    const user = await User.findById(userId);
+    const user = await userModel.findById(userId);
     console.log("user", user);
 
     if (!user) {
@@ -97,7 +95,7 @@ const validateManagement = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECERT);
     const userId = decoded.id;
-    const user = await User.findById(userId);
+    const user = await userModel.findById(userId);
     console.log("user", user);
 
     if (!user) {
