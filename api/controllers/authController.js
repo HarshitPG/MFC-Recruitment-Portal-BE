@@ -47,6 +47,7 @@ const signUp = async (req, res) => {
             "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
         });
       }
+      await UserModel.deleteOne({ _id: userAvailable._id });
       return res.status(200).json({
         error:
           "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
