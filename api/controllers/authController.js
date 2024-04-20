@@ -18,15 +18,15 @@ const signUp = async (req, res) => {
     const emailList = allowedEmailsData.allowedEmails;
     if (!emailList.includes(email)) {
       return res
-        .status(400)
+        .status(200)
         .json({ error: "User have not enrolled in MFC-VIT" });
     }
     if (!username || !email || !regno || !password || !confirmpassword) {
-      return res.status(400).json({ error: "All fields are required" });
+      return res.status(200).json({ error: "All fields are required" });
     }
 
     if (password !== confirmpassword) {
-      return res.status(400).json({ error: "Passwords do not match" });
+      return res.status(200).json({ error: "Passwords do not match" });
     }
 
     const userAvailable = await UserModel.findOne({
@@ -42,19 +42,19 @@ const signUp = async (req, res) => {
       if (Date.now() > userToDelete.expiresAt) {
         await UserModel.deleteOne({ _id: userAvailable._id });
         console.log(`Deleted unverified user: ${userAvailable.email}`);
-        return res.status(400).json({
+        return res.status(200).json({
           error:
             "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
         });
       }
-      return res.status(400).json({
+      return res.status(200).json({
         error:
           "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
       });
     }
 
     if (userAvailable && userAvailable.verified) {
-      return res.status(400).json({
+      return res.status(200).json({
         error: "An account with this email already exists and is verified.",
       });
     }
