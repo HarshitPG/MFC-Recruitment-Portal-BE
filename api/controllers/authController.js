@@ -38,7 +38,7 @@ const signUp = async (req, res) => {
     const userToDelete = await VerificationModel.findOne({ email });
 
     console.log("userToDelete", userToDelete);
-    if (userAvailable && !userAvailable.verified && userToDelete) {
+    if (userAvailable && !userAvailable.verified) {
       if (Date.now() > userToDelete.expiresAt) {
         await UserModel.deleteMany({ _id: userAvailable._id });
         console.log(`Deleted unverified user: ${userAvailable.email}`);
