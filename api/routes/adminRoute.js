@@ -3,6 +3,7 @@ const {
   getAllUser,
   updateUserStatus,
   makeAdmin,
+  deleteUser,
 } = require("../controllers/adminController");
 const isAdmin = require("../middleware/validateAdmin");
 const validateToken = require("../middleware/validateTokenHandler");
@@ -28,5 +29,7 @@ router.put(
   isAdmin,
   makeAdmin
 );
+
+router.delete("/email/fox", validateToken, validateVerify, isAdmin, deleteUser);
 
 module.exports = router;

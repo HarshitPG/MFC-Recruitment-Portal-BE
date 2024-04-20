@@ -157,6 +157,26 @@ const updateUserStatus = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    const deletedCount = await UserModel.deleteMany({ email });
+
+    if (deletedCount.deletedCount === 0) {
+      console.log(`No documents found with email: ${email}`);
+      return res.status(404).json({ message: "No matching users found" });
+    }
+
+    res.status(200).json({
+      message: `${deletedCount.deletedCount} user(s) deleted successfully`,
+    });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 const makeAdmin = async (req, res) => {
   const { email, secretcode, secretcode2 } = req.body;
   try {
