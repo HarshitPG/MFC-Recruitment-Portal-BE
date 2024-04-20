@@ -40,14 +40,14 @@ const signUp = async (req, res) => {
     console.log("userToDelete", userToDelete);
     if (userAvailable && !userAvailable.verified && userToDelete) {
       if (Date.now() > userToDelete.expiresAt) {
-        await UserModel.deleteOne({ _id: userAvailable._id });
+        await UserModel.deleteMany({ _id: userAvailable._id });
         console.log(`Deleted unverified user: ${userAvailable.email}`);
         return res.status(200).json({
           error:
             "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
         });
       }
-      await UserModel.deleteOne({ _id: userAvailable._id });
+      await UserModel.deleteMany({ _id: userAvailable._id });
       return res.status(200).json({
         error:
           "Account already created and OTP is also sent but not verified. Please try again after 15 minutes.",
