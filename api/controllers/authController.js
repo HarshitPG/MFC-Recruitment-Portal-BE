@@ -194,6 +194,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({
       email: email,
+      verified: true,
     });
 
     if (user && user.verified) {
@@ -237,6 +238,7 @@ const login = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
+    console.log(error);
   }
 };
 
