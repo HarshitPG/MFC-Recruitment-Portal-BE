@@ -126,35 +126,39 @@ const verifyOTP = async (req, res) => {
     if (!id || !otp) {
       res.status(200).json({ message: "Invalid token otp or email" });
     } else {
-      const user = await VerificationModel.findOne({ user_id: id });
+      const user = await VerificationModel.findOne({
+        user_id: id,
+        // email: email,
+      });
+
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(404).json({ message: "User not found 1." });
       } else {
-        const existingUser = await UserModel.findById(id);
-        if (existingUser && existingUser.verified) {
-          return res.status(200).json({ message: "User is already verified" });
-        }
-        const { expiresAt, hashedOTP } = user;
+        const { expiresAt } = user;
+        const hashedOTP = user.otp;
+        console.log(hashedOTP, user);
+
         if (expiresAt < Date.now()) {
           await VerificationModel.deleteMany({ user_id: id });
-          return res
+
+          res
             .status(200)
-            .json({ message: "Code has expired. Please req again." });
+            .json({ message: "Code has expired. please req again " });
         } else {
           const validOTP = await bcrypt.compare(otp, hashedOTP);
           if (!validOTP) {
-            return res.status(200).json({
-              message: "Invalid OTP. Please check inbox for latest OTP.",
-            });
+            res
+              .status(200)
+              .json({ message: "Invalid please check inbox for latest otp" });
           } else {
             await UserModel.updateOne({ _id: id }, { verified: true });
             await VerificationModel.deleteMany({ user_id: id });
-            return res
-              .status(200)
-              .json({ message: "User verified successfully" });
+            res.status(200).json({ message: "verified" });
           }
         }
       }
+
+      console.log("user", user);
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
