@@ -17,10 +17,10 @@ const TechTaskSchema = new Schema({
       validator: function (value) {
         return value.every((item) => {
           if (item === null) return true;
-          return item.trim().split(/\s+/).length <= 100;
+          return item.trim().split(/\s+/).length <= 2000;
         });
       },
-      message: "Maximum word limit exceeded (100 words).",
+      message: "Maximum word limit exceeded (2000 words).",
     },
     required: true,
   },
@@ -30,10 +30,10 @@ const TechTaskSchema = new Schema({
       validator: function (value) {
         return value.every((item) => {
           if (item === null) return true;
-          return item.trim().split(/\s+/).length <= 100;
+          return item.trim().split(/\s+/).length <= 2000;
         });
       },
-      message: "Maximum word limit exceeded (100 words).",
+      message: "Maximum word limit exceeded (2000 words).",
     },
     required: true,
   },
@@ -43,10 +43,10 @@ const TechTaskSchema = new Schema({
       validator: function (value) {
         return value.every((item) => {
           if (item === null) return true;
-          return item.trim().split(/\s+/).length <= 100;
+          return item.trim().split(/\s+/).length <= 2000;
         });
       },
-      message: "Maximum word limit exceeded (100 words).",
+      message: "Maximum word limit exceeded (2000 words).",
     },
     required: true,
   },
@@ -56,10 +56,10 @@ const TechTaskSchema = new Schema({
       validator: function (value) {
         return value.every((item) => {
           if (item === null) return true;
-          return item.trim().split(/\s+/).length <= 100;
+          return item.trim().split(/\s+/).length <= 2000;
         });
       },
-      message: "Maximum word limit exceeded (100 words).",
+      message: "Maximum word limit exceeded (2000 words).",
     },
     required: true,
   },
