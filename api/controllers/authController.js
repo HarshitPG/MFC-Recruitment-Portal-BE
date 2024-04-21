@@ -124,7 +124,7 @@ const verifyOTP = async (req, res) => {
     const { id } = req.params;
     const { otp } = req.body;
     if (!id || !otp) {
-      res.status(200).json({ message: "Invalid token otp or email" });
+      res.status(200).json({ message: "Invalid otp" });
     } else {
       const user = await VerificationModel.findOne({
         user_id: id,
@@ -143,7 +143,7 @@ const verifyOTP = async (req, res) => {
 
           res
             .status(200)
-            .json({ message: "Code has expired. please req again " });
+            .json({ message: "Code has expired. please request again " });
         } else {
           const validOTP = await bcrypt.compare(otp, hashedOTP);
           if (!validOTP) {
