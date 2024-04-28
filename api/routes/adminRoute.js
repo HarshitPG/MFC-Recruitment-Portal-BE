@@ -3,6 +3,9 @@ const {
   getAllUser,
   updateUserStatus,
   makeAdmin,
+  getAllUserTech,
+  getAllUserManagement,
+  getAllUserDesign,
 } = require("../controllers/adminController");
 const isAdmin = require("../middleware/validateAdmin");
 const validateToken = require("../middleware/validateTokenHandler");
@@ -14,6 +17,27 @@ app.use(express.json());
 const router = express.Router();
 
 router.get("/users/:id", validateToken, validateVerify, isAdmin, getAllUser);
+router.get(
+  "/userstech/:id",
+  validateToken,
+  validateVerify,
+  isAdmin,
+  getAllUserTech
+);
+router.get(
+  "/usersmanagement/:id",
+  validateToken,
+  validateVerify,
+  isAdmin,
+  getAllUserManagement
+);
+router.get(
+  "/usersdesign/:id",
+  validateToken,
+  validateVerify,
+  isAdmin,
+  getAllUserDesign
+);
 router.put(
   "/updatestatus/:id",
   validateToken,
