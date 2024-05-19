@@ -177,7 +177,7 @@ const resendOTP = async (req, res) => {
         email: email,
       });
       if (!user.verified) {
-        await VerificationModel.deleteMany({ id });
+        await VerificationModel.deleteMany({ user_id });
         await sendVerificationMail(user);
         res.status(200).json({ message: "sent otp again" });
       } else {
