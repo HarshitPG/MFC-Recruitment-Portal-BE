@@ -172,7 +172,12 @@ const resendOTP = async (req, res) => {
     if (!id || !email) {
       throw Error("Empty user missing");
     } else {
-      const user = await VerificationModel.findOne({
+      const user = await UserModel.findOne({ _id: id, email: email });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const verificationRecord = await VerificationModel.findOne({
         user_id: id,
         email: email,
       });
