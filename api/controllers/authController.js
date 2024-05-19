@@ -217,8 +217,7 @@ const login = async (req, res) => {
             isJC: user.isJC,
             isSC: user.isSC,
           },
-          process.env.ACCESS_TOKEN_SECERT,
-          { expiresIn: "1d" }
+          process.env.ACCESS_TOKEN_SECERT
         );
 
         console.log(`User created login : ${user}`);

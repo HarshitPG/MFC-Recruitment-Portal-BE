@@ -19,7 +19,7 @@ async function sendVerificationMail(user) {
     const hashedOTP = await bcrypt.hash(otp, salt);
     console.log("Hashed OTP: ", hashedOTP);
     const newOTPVerification = new VerificationModel({
-      user_id: user._id,
+      user_id: user.id,
       otp: hashedOTP,
       email: user.email,
       createdAt: Date.now(),
@@ -31,7 +31,7 @@ async function sendVerificationMail(user) {
       status: "PENDING",
       message: "verification otp email sent",
       data: {
-        userId: user._id,
+        userId: user.id,
         email: user.email,
       },
     };
